@@ -1,0 +1,70 @@
+swagger: "2.0"
+info:
+  description: 'This is swagger document for the LMS System'
+  version: "1.0.0"
+  title: "Pragra LMS 1.0"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+basePath: "/api/v1"
+tags:
+- name: "account"
+  description: "All account related APIs will go here"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "https"
+- "http"
+paths:
+  /account:
+    post:
+      tags:
+      - "account"
+      summary: "create an account in LMS System"
+      description: ""
+      operationId: "addAccount"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Account Related information"
+        required: true
+        schema:
+          $ref: '#/definitions/Account'
+      responses:
+        201:
+          description: "Successfully created"
+          schema:
+            $ref: '#/definitions/Account'
+        405:
+          description: "Invalid input"
+     
+    
+definitions:
+  Account:
+    type: "object"
+    properties:
+      id:
+        type: integer
+        format: "int64"
+      name:
+        type: string
+        maxLength: 40
+        minimum: 10
+      email:
+        type: string
+    xml:
+      name: "account"
+ 
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
